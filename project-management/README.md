@@ -1,6 +1,6 @@
 # Project Management Skills Collection
 
-**Complete suite of 6 world-class Atlassian expert skills** for project and agile delivery teams using Jira and Confluence.
+**Collection of 8 project-management subskills plus a collection-level index.** The examples below cover project and agile delivery, including Jira and Confluence.
 
 ---
 
@@ -67,7 +67,7 @@ npx ai-agent-skills install alirezarezvani/claude-skills/project-management/atla
 This project management skills collection provides world-class Atlassian expertise for teams using Jira and Confluence to deliver software projects and agile initiatives.
 
 **What's Included:**
-- **6 expert-level skills** covering PM, agile, Jira, Confluence, administration, and templates
+- **8 subskills** plus the collection-level index
 - **Atlassian MCP integration** for direct Jira/Confluence operations
 - **Comprehensive frameworks** for project management, agile ceremonies, and documentation
 - **15+ ready-to-use templates** for sprints, retrospectives, project charters, and more
@@ -491,5 +491,5 @@ mcp__atlassian__search_issues jql="project = PROJ AND status = 'In Progress'"
 ---
 
 **Last Updated:** January 2026
-**Skills Deployed:** 6/6 project management skills production-ready
+**Skill directories:** 8 subskills plus the collection-level index
 **Key Feature:** Atlassian MCP integration for direct Jira/Confluence operations
