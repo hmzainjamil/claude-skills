@@ -14,13 +14,13 @@ My App is a user management platform for internal teams. It provides CRUD operat
 
 ## Page Inventory
 
-| # | Page Name | Route | Module | Doc Link |
+| # | Page Name | Route | Module | Detailed spec |
 |---|-----------|-------|--------|----------|
-| 1 | Home | / | — | [→](./pages/01-home.md) |
-| 2 | Dashboard | /dashboard | Dashboard | [→](./pages/02-dashboard.md) |
-| 3 | User List | /users | User Mgmt | [→](./pages/03-user-list.md) |
-| 4 | User Detail | /users/:id | User Mgmt | [→](./pages/04-user-detail.md) |
-| 5 | Settings | /settings | Settings | [→](./pages/05-settings.md) |
+| 1 | Home | / | — | Not included in this example |
+| 2 | Dashboard | /dashboard | Dashboard | Not included in this example |
+| 3 | User List | /users | User Mgmt | See [sample page specification](./sample-page-user-list.md) |
+| 4 | User Detail | /users/:id | User Mgmt | Not included in this example |
+| 5 | Settings | /settings | Settings | Not included in this example |
 
 ## API Inventory
 
