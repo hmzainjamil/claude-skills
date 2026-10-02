@@ -20,7 +20,7 @@ python3 scripts/contrast_checker.py "#1a1a2e" "#ffffff"
 | `a11y_scanner.py` | Scan supported source files for selected rule-based accessibility findings |
 | `contrast_checker.py` | WCAG contrast ratio calculator with AA/AAA checks and `--suggest` mode |
 
-Both are stdlib-only — no pip install needed. Exit codes differ: scanner returns 1 for critical/serious findings, 2 for moderate/minor findings, and 0 otherwise; contrast checker returns 0 when the AA normal-text ratio passes and 1 when it fails or input is invalid. A zero scanner exit does not mean no findings or WCAG compliance.
+Both are stdlib-only — no pip install needed. Exit codes differ: scanner returns 1 for critical/serious findings, 2 for moderate/minor findings, and 0 otherwise; single-pair contrast checks return 0 when the AA normal-text ratio passes and 1 when it fails; invalid input also returns 1. A zero scanner exit does not mean no findings or WCAG compliance.
 
 ## What It Covers
 
