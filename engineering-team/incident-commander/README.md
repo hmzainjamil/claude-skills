@@ -1,14 +1,14 @@
 # Incident Commander Skill
 
-A comprehensive incident response framework providing structured tools for managing technology incidents from detection through resolution and post-incident review.
+A small set of Python scripts that format incident-response guidance from supplied incident data. They do not connect to monitoring, paging, ticketing, or status-page systems.
 
 ## Overview
 
 This skill implements battle-tested practices from SRE and DevOps teams at scale, providing:
 
-- **Automated Severity Classification** - Intelligent incident triage
-- **Timeline Reconstruction** - Transform scattered events into coherent narratives
-- **Post-Incident Review Generation** - Structured PIRs with RCA frameworks
+- **Rule-based severity suggestions** - Keyword, impact, and duration scoring against fixed rules; responders must confirm severity
+- **Timeline formatting** - Organize supplied timestamped events and apply fixed phase/gap heuristics
+- **PIR drafting** - Format supplied incident details using selected RCA prompts; generated text is not verified root-cause analysis
 - **Communication Templates** - Pre-built stakeholder communication
 - **Comprehensive Documentation** - Reference guides for incident response
 
@@ -51,7 +51,7 @@ python scripts/pir_generator.py --incident incident.json --timeline timeline.jso
 
 ### incident_classifier.py
 
-**Purpose:** Analyzes incident descriptions and provides severity classification, team recommendations, and response templates.
+**Purpose:** Scores supplied descriptions and impact fields against fixed keyword/rule tables to suggest severity, teams, actions, and communication text. This is a triage aid, not an authoritative severity decision.
 
 **Input:** JSON object with incident details or plain text description
 **Output:** JSON + human-readable classification report
@@ -67,7 +67,7 @@ python scripts/pir_generator.py --incident incident.json --timeline timeline.jso
 ```
 
 **Key Features:**
-- SEV1-4 severity classification
+- SEV1-4 severity suggestions from fixed keyword and impact scoring; validate against your incident policy
 - Recommended response teams
 - Initial action prioritization
 - Communication templates
@@ -75,7 +75,7 @@ python scripts/pir_generator.py --incident incident.json --timeline timeline.jso
 
 ### timeline_reconstructor.py
 
-**Purpose:** Reconstructs incident timelines from timestamped events, identifies phases, and performs gap analysis.
+**Purpose:** Sorts supplied timestamped events, assigns phases using text patterns, and flags gaps using fixed thresholds. Verify timestamps, phase labels, and flagged gaps against source records.
 
 **Input:** JSON array of timestamped events
 **Output:** Formatted timeline with phase analysis and metrics
@@ -97,19 +97,19 @@ python scripts/pir_generator.py --incident incident.json --timeline timeline.jso
 - Phase detection (detection → triage → mitigation → resolution)
 - Duration analysis
 - Gap identification
-- Communication effectiveness analysis
+- Event-gap indicators; these do not measure communication effectiveness
 - Response metrics
 
 ### pir_generator.py
 
-**Purpose:** Generates comprehensive Post-Incident Review documents with multiple RCA frameworks.
+**Purpose:** Drafts a Post-Incident Review from supplied incident and optional timeline JSON. RCA methods provide structured prompts and generated summaries; they do not establish or verify causation.
 
 **Input:** Incident data JSON, optional timeline data
 **Output:** Structured PIR document with RCA analysis
 
 **Key Features:**
-- Multiple RCA methods (5 Whys, Fishbone, Timeline, Bow Tie)
-- Automated action item generation
+- Selectable analysis formats (5 Whys, Fishbone, Timeline, Bow Tie); human-led evidence review is required
+- Action-item drafting from supplied data and templates; confirm owners, due dates, and success criteria
 - Lessons learned categorization
 - Follow-up planning
 - Completeness assessment
@@ -182,7 +182,7 @@ python scripts/timeline_reconstructor.py \
 ```bash
 python scripts/pir_generator.py \
   --incident incident.json \
-  --timeline timeline.md \
+  --timeline timeline.json \
   --rca-method fishbone \
   --output pir.md
 ```
@@ -208,8 +208,8 @@ Use classification output to automatically select appropriate runbooks and escal
 
 - **Zero External Dependencies** - All scripts use only Python standard library
 - **Dual Output Format** - Both JSON (machine-readable) and text (human-readable)
-- **Robust Input Handling** - Graceful handling of missing or malformed data
-- **Professional Defaults** - Opinionated, battle-tested configurations
+- Input validation for supported JSON/text formats; inspect output and errors before relying on results
+- Fixed example rules and templates; adapt and validate them against your incident policy
 - **Comprehensive Testing** - Sample data and expected outputs included
 
 ## Technical Requirements
