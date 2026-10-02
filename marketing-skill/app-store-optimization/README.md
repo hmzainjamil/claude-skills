@@ -6,11 +6,11 @@
 
 ## Overview
 
-A comprehensive App Store Optimization (ASO) skill that provides complete capabilities for researching, optimizing, and tracking mobile app performance on the Apple App Store and Google Play Store. This skill empowers app developers and marketers to maximize their app's visibility, downloads, and success in competitive app marketplaces.
+A set of Python utilities and workflow guidance for drafting and assessing ASO work for Apple App Store and Google Play listings. Scripts analyze caller-supplied data; they do not connect to store APIs or establish ranking or download outcomes.
 
 ## What This Skill Does
 
-This skill provides end-to-end ASO capabilities across seven key areas:
+This skill provides planning and analysis helpers across seven areas; it does not execute store operations:
 
 1. **Research & Analysis**: Keyword research, competitor analysis, market trends, review sentiment
 2. **Metadata Optimization**: Title, description, keywords with platform-specific character limits
@@ -23,7 +23,7 @@ This skill provides end-to-end ASO capabilities across seven key areas:
 ## Key Features
 
 ### Comprehensive Keyword Research
-- Search volume and competition analysis
+- Analysis of search-volume and competition values supplied by the user
 - Long-tail keyword discovery
 - Competitor keyword extraction
 - Keyword difficulty scoring
@@ -45,32 +45,32 @@ This skill provides end-to-end ASO capabilities across seven key areas:
 - Multiple optimization strategies
 
 ### Competitor Intelligence
-- Automated competitor discovery
+- Competitor metadata analysis from caller-supplied records
 - Metadata strategy analysis
 - Visual asset assessment
 - Gap identification
 - Competitive positioning
 
 ### ASO Health Scoring
-- 0-100 overall score
+- 0-100 heuristic score from supplied metrics; not an app-store ranking or validated benchmark
 - Four-category breakdown (Metadata, Ratings, Keywords, Conversion)
 - Strengths and weaknesses identification
 - Prioritized action recommendations
-- Expected impact estimates
+- Heuristic impact estimates based on supplied inputs
 
-### Scientific A/B Testing
+### A/B Test Planning
 - Test design and hypothesis formulation
 - Sample size calculation
-- Statistical significance analysis
+- Simplified sample-size and significance estimates; no experiment execution
 - Duration estimation
 - Implementation recommendations
 
 ### Global Localization
 - Market prioritization (Tier 1/2/3)
-- Translation cost estimation
+- Input-driven translation cost estimates
 - Character limit adaptation by language
 - Cultural keyword considerations
-- ROI analysis
+- Assumption-based ROI estimates, not measured outcomes
 
 ### Review Intelligence
 - Sentiment analysis
@@ -88,7 +88,7 @@ This skill provides end-to-end ASO capabilities across seven key areas:
 
 ## Python Modules
 
-This skill includes 8 powerful Python modules:
+This directory contains 8 Python modules; they provide input-driven helpers, not live store integrations:
 
 ### 1. keyword_analyzer.py
 **Purpose**: Analyzes keywords for search volume, competition, and relevance
@@ -363,9 +363,9 @@ Hey Claude—I just added the "app-store-optimization" skill. Generate a complet
 ## Limitations
 
 ### Data Dependencies
-- Keyword search volumes are estimates (no official Apple/Google data)
-- Competitor data limited to publicly available information
-- Review analysis requires access to public reviews
+- Scripts do not fetch store data, discover competitors, retrieve reviews, or track rankings; provide those inputs yourself
+- Keyword volumes and competitive metrics are estimates, not official Apple/Google data
+- Review analysis requires caller-supplied review text
 - Historical data may not be available for new apps
 
 ### Platform Constraints
