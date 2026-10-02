@@ -15,7 +15,7 @@ The Skill Tester is a meta-skill that ensures quality and consistency across all
 ### Validate a Skill
 ```bash
 # Basic validation
-python scripts/skill_validator.py engineering/my-skill
+python3 engineering/skill-tester/scripts/skill_validator.py engineering/my-skill
 
 # Validate against specific tier
 python scripts/skill_validator.py engineering/my-skill --tier POWERFUL --json
@@ -24,7 +24,7 @@ python scripts/skill_validator.py engineering/my-skill --tier POWERFUL --json
 ### Test Scripts
 ```bash
 # Test all scripts in a skill
-python scripts/script_tester.py engineering/my-skill
+python3 engineering/skill-tester/scripts/script_tester.py engineering/my-skill
 
 # Test with custom timeout
 python scripts/script_tester.py engineering/my-skill --timeout 60 --json
@@ -33,7 +33,7 @@ python scripts/script_tester.py engineering/my-skill --timeout 60 --json
 ### Score Quality
 ```bash
 # Get quality assessment
-python scripts/quality_scorer.py engineering/my-skill
+python3 engineering/skill-tester/scripts/quality_scorer.py engineering/my-skill
 
 # Detailed scoring with improvement suggestions
 python scripts/quality_scorer.py engineering/my-skill --detailed --json
@@ -42,9 +42,10 @@ python scripts/quality_scorer.py engineering/my-skill --detailed --json
 ## Components
 
 ### Scripts
-- **skill_validator.py** (700+ LOC) - Validates skill structure and compliance
-- **script_tester.py** (800+ LOC) - Tests script functionality and quality
-- **quality_scorer.py** (1100+ LOC) - Multi-dimensional quality assessment
+- **skill_validator.py** (667 lines) - Validates skill structure and compliance
+- **script_tester.py** (730 lines) - Tests script functionality and quality
+- **quality_scorer.py** (1,181 lines) - Scores skills across quality dimensions
+- **security_scorer.py** (605 lines) - Optional security scoring module used by `quality_scorer.py`
 
 ### Reference Documentation
 - **skill-structure-specification.md** - Complete structural requirements
@@ -72,10 +73,8 @@ python scripts/quality_scorer.py engineering/my-skill --detailed --json
 - Output format compliance checking
 
 ### Quality Assessment
-- Documentation quality scoring (25%)
-- Code quality evaluation (25%)  
-- Completeness assessment (25%)
-- Usability analysis (25%)
+- Default scoring: documentation, code quality, completeness, and usability at 25% each
+- Optional security scoring with `--include-security`: five dimensions at 20% each
 - Letter grade assignment (A+ to F)
 - Tier recommendation generation
 - Improvement roadmap creation
@@ -128,10 +127,10 @@ fi
 - **CLI Best Practices** - Full argparse implementation with help text
 
 ### Validation Accuracy
-- **Structure Checks** - 100% accurate directory and file validation
-- **Content Analysis** - Deep parsing of SKILL.md and documentation
-- **Code Analysis** - AST-based Python code validation
-- **Compliance Scoring** - Objective, repeatable quality assessment
+- **Structure Checks** - Checks required directories and files against configured rules
+- **Content Analysis** - Parses SKILL.md and documentation using defined checks
+- **Code Analysis** - Uses AST-based Python code validation
+- **Compliance Scoring** - Applies documented scoring rules; results are guidance, not a guarantee of correctness
 
 ## Self-Testing
 
@@ -139,13 +138,13 @@ The skill-tester can validate itself:
 
 ```bash
 # Validate the skill-tester structure
-python scripts/skill_validator.py . --tier POWERFUL
+python3 engineering/skill-tester/scripts/skill_validator.py engineering/skill-tester --tier POWERFUL
 
 # Test the skill-tester scripts
-python scripts/script_tester.py .
+python3 engineering/skill-tester/scripts/script_tester.py engineering/skill-tester
 
 # Score the skill-tester quality
-python scripts/quality_scorer.py . --detailed
+python3 engineering/skill-tester/scripts/quality_scorer.py engineering/skill-tester --detailed
 ```
 
 ## Advanced Usage
@@ -161,15 +160,14 @@ done
 
 ### Quality Monitoring
 ```bash
-# Generate quality report for all skills
-python engineering/skill-tester/scripts/quality_scorer.py engineering/ \
-  --batch --json > quality_report.json
+# Score one skill at a time; `quality_scorer.py` has no batch option
+python3 engineering/skill-tester/scripts/quality_scorer.py engineering/my-skill --json > quality_report.json
 ```
 
 ### Custom Scoring Thresholds
 ```bash
 # Enforce minimum quality scores
-python scripts/quality_scorer.py engineering/my-skill --minimum-score 80
+python3 engineering/skill-tester/scripts/quality_scorer.py engineering/my-skill --minimum-score 80
 # Exit code 0 = passed, 1 = failed, 2 = needs improvement
 ```
 
