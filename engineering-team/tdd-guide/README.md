@@ -66,7 +66,8 @@ The TDD Guide skill transforms how engineering teams implement Test Driven Devel
 1. **Download the skill folder**:
    ```bash
    # Option A: Clone from repository
-   git clone https://github.com/your-org/tdd-guide-skill.git
+   git clone https://github.com/hmzainjamil/claude-skills.git
+   cd claude-skills
 
    # Option B: Download ZIP and extract
    ```
@@ -74,16 +75,16 @@ The TDD Guide skill transforms how engineering teams implement Test Driven Devel
 2. **Install to Claude skills directory**:
    ```bash
    # Project-level (recommended for team projects)
-   cp -r tdd-guide /path/to/your/project/.claude/skills/
+   cp -r engineering-team/tdd-guide /path/to/your/project/.claude/skills/tdd-guide
 
    # User-level (available for all projects)
-   cp -r tdd-guide ~/.claude/skills/
+   cp -r engineering-team/tdd-guide ~/.claude/skills/tdd-guide
    ```
 
 3. **Verify installation**:
    ```bash
    ls ~/.claude/skills/tdd-guide/
-   # Should show: SKILL.md, *.py files, samples
+   # Skill files are under SKILL.md, scripts/, references/, and assets/
    ```
 
 ### Claude Apps (Browser)
