@@ -383,7 +383,7 @@ with open('my_tools_anthropic.json') as f:
 # Use with Anthropic tool use
 client = anthropic.Anthropic()
 response = client.messages.create(
-    model="claude-3-opus-20240229",
+    model="YOUR_CLAUDE_MODEL",
     messages=[{"role": "user", "content": "Search for AI news"}],
     tools=schemas['tools']
 )
