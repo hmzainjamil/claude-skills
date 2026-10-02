@@ -115,7 +115,7 @@ git log --oneline $(git describe --tags --abbrev=0)..HEAD | \
 
 ### release_planner.py
 
-Assesses release readiness and generates comprehensive release coordination plans.
+Checks release-plan fields supplied in JSON and generates a readiness report, checklist, and coordination drafts. It does not run tests, verify approvals, inspect CI, create releases, or execute rollback procedures.
 
 **Input:** JSON release plan with features, quality gates, and stakeholders
 
@@ -134,10 +134,10 @@ python release_planner.py \
 ```
 
 **Features:**
-- Feature readiness assessment with approval tracking
-- Quality gate validation and reporting
+- Reports readiness fields and approvals declared in the input plan
+- Reports the pass/pending/fail values supplied for quality gates; it does not execute the gates
 - Stakeholder communication planning
-- Rollback procedure generation
+- Draft rollback steps from the plan or built-in templates; procedures are not tested or executed
 - Risk analysis and timeline assessment
 - Customizable test coverage thresholds
 - Multiple output formats (text, JSON, Markdown)
@@ -189,6 +189,7 @@ jobs:
       id: version
       run: |
         CURRENT=$(git describe --tags --abbrev=0)
+        echo "current_version=$CURRENT" >> $GITHUB_OUTPUT
         git log --oneline $CURRENT..HEAD | \
           python scripts/version_bumper.py -c $CURRENT --output-format json > bump.json
         echo "new_version=$(jq -r '.recommended_version' bump.json)" >> $GITHUB_OUTPUT
