@@ -84,10 +84,12 @@ python scripts/goal_verifier.py implementation-plan.md --json
 
 ## Enforcement levels
 
-1. **Passive** — install plugin, principles load as context (~60% compliance)
-2. **Active review** — run `/karpathy-check` before commits (~85%)
-3. **Pre-commit hook** — wire `karpathy-gate.sh` via Husky (~95%)
-4. **CI gate** — add tools to GitHub Actions PR checks (~99%)
+1. **Passive** — load principles as context; no automated check is implied.
+2. **Active review** — run `/karpathy-check` before commits.
+3. **Pre-commit hook** — wire `karpathy-gate.sh` via Husky; it prints warnings but exits successfully.
+4. **CI gate** — add selected tools to GitHub Actions PR checks and define project-specific failure criteria.
+
+These are implementation options, not measured compliance levels. The repository includes no study or benchmark supporting compliance percentages.
 
 See `references/enforcement-patterns.md` for setup instructions at each level.
 
