@@ -6,14 +6,14 @@ A Python toolkit that parses selected dependency files, checks them against bund
 
 The Dependency Auditor includes three Python scripts for dependency inventory analysis, license classification, and upgrade-plan drafting:
 
-- **`dep_scanner.py`**: Vulnerability scanning and dependency analysis
-- **`license_checker.py`**: License compliance and conflict detection  
-- **`upgrade_planner.py`**: Upgrade path planning and risk assessment
+- **`dep_scanner.py`**: Dependency parsing and matching against bundled vulnerability entries
+- **`license_checker.py`**: License classification and heuristic conflict flags  
+- **`upgrade_planner.py`**: Upgrade-plan drafting and heuristic risk assessment
 
 ## Features
 
 ### 🔍 Vulnerability Scanning
-- Multi-language dependency parsing (JavaScript, Python, Go, Rust, Ruby, Java)
+- Dependency parsing for JavaScript, Python, Go, Rust, and Ruby formats listed below
 - Bundled vulnerability entries for selected packages; no live vulnerability-feed sync
 - Bundled CVSS values and rule-based risk labels for listed entries
 - JSON and human-readable output formats
@@ -23,12 +23,12 @@ The Dependency Auditor includes three Python scripts for dependency inventory an
 - Built-in license classification and compatibility heuristics
 - Potential conflict checks based on recognized project/dependency license identifiers
 - Risk assessment for commercial usage and distribution
-- Compliance scoring and reporting
+- License risk scoring and reporting for human review
 
 ### 📈 Upgrade Planning
 - Version-pattern classification and heuristic breaking-change risk estimates
 - Risk-based upgrade prioritization
-- Phased migration plans with rollback procedures
+- Phased upgrade plans with suggested migration and rollback steps
 - Security-focused upgrade recommendations
 
 ## Installation
