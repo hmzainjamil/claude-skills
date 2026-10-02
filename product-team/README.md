@@ -1,13 +1,13 @@
 # Product Team Skills Collection
 
-**8 production-ready product skills** covering product management, agile delivery, strategy, UX research, design systems, competitive intelligence, landing pages, and SaaS scaffolding.
+**16 product subskills plus a collection-level index skill** covering product management, agile delivery, strategy, UX research, design systems, competitive intelligence, landing pages, and SaaS scaffolding.
 
 ---
 
 ## Overview
 
-- **8 skills** covering the full product lifecycle from discovery to delivery
-- **9 Python automation tools** (stdlib only, zero dependencies)
+- **16 subskills** plus the collection-level index
+- **19 Python files** under script directories; confirm each tool and its dependencies before use
 - **4 agents** orchestrating skills across product workflows
 - **5 slash commands** for quick access to common operations
 
@@ -112,5 +112,5 @@ python saas-scaffolder/scripts/project_bootstrapper.py config.json
 
 **Last Updated:** March 10, 2026
 **Version:** v2.1.2
-**Skills Deployed:** 8/8 production-ready
+**Skill directories:** 16 subskills plus the collection-level index
 **Total Tools:** 9 Python automation tools
