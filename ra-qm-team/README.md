@@ -1,6 +1,6 @@
 # Regulatory Affairs & Quality Management Skills Collection
 
-**Complete suite of 12 world-class expert skills** for HealthTech and MedTech organizations covering regulatory compliance, quality management, risk management, security, and audit excellence.
+**Collection of 13 specialist skills plus a collection-level index.** This HealthTech and MedTech collection covers regulatory, quality, risk, security, and audit topics.
 
 ---
 
@@ -73,8 +73,8 @@ npx ai-agent-skills install alirezarezvani/claude-skills/ra-qm-team/gdpr-dsgvo-e
 This comprehensive skills collection provides **world-class regulatory affairs and quality management capabilities** for HealthTech and MedTech organizations navigating complex global regulatory landscapes.
 
 **What's Included:**
-- **12 expert-level skills** across 5 specialized layers
-- **36 Python automation tools** for compliance tracking and reporting
+- **13 specialist skills** plus the collection-level index; the architecture below still describes the original 12-skill grouping
+- **25 Python files** under script directories; their presence does not establish regulatory suitability or validation
 - **36 comprehensive reference guides** with regulatory frameworks
 - **Complete coverage** of EU MDR, FDA, ISO 13485, ISO 27001, GDPR compliance
 
@@ -88,7 +88,7 @@ This comprehensive skills collection provides **world-class regulatory affairs a
 
 ## 🏗️ Skills Architecture
 
-The 12 skills are organized across 5 strategic layers:
+The original 12-skill grouping is organized across 5 strategic layers; `soc2-compliance` is an additional skill directory:
 
 ### Strategic Leadership Layer (2 Skills)
 1. **Senior Regulatory Affairs Manager (Head of RA)**
