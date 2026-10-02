@@ -24,8 +24,8 @@ claude --plugin-dir ./engineering-team/playwright-pro
 | `/pw:fix <test>` | Diagnose and fix a failing or flaky test |
 | `/pw:migrate` | Migrate from Cypress or Selenium to Playwright |
 | `/pw:coverage` | Analyze what's tested vs. what's missing |
-| `/pw:testrail` | Sync with TestRail — read cases, push results, create runs |
-| `/pw:browserstack` | Run tests on BrowserStack, pull cross-browser reports |
+| `/pw:testrail` | Prompt guidance only; configured MCP server path is absent from this checkout |
+| `/pw:browserstack` | Prompt guidance only; configured MCP server path is absent from this checkout |
 | `/pw:report` | Generate a test report in your preferred format |
 
 ## Quick Start
@@ -67,10 +67,10 @@ Ready-to-use, parametrizable templates covering:
 | API | 5 | REST CRUD, GraphQL, error handling |
 | Accessibility | 3 | Keyboard nav, screen reader, contrast |
 
-### 2 MCP Integrations
+### 2 Integration Configurations
 
-- **TestRail** — Read test cases, create runs, push pass/fail results
-- **BrowserStack** — Trigger cross-browser runs, pull session reports with video/screenshots
+- **TestRail** — Configuration points to an absent server source path; not runnable from this checkout
+- **BrowserStack** — Configuration points to an absent server source path; not runnable from this checkout
 
 ### Smart Hooks
 
@@ -107,7 +107,7 @@ Then use `/pw:browserstack` to run tests across browsers.
 
 | Agent | How |
 |---|---|
-| **Claude Code** | Full plugin — slash commands, MCP tools, hooks, agents |
+| **Claude Code** | Plugin skills, hooks, and agents; TestRail and BrowserStack MCP server sources are absent from this checkout |
 | **Codex CLI** | Copy `CLAUDE.md` to your project root as `AGENTS.md` |
 | **OpenClaw** | Use as a skill with `SKILL.md` entry point |
 
