@@ -5,7 +5,7 @@ A comprehensive database design and analysis toolkit that provides expert-level 
 ## Features
 
 ### 🔍 Schema Analyzer
-- **Normalization Analysis**: Automated detection of 1NF through BCNF violations
+- **Normalization Analysis**: Heuristic checks for selected 1NF/2NF/3NF patterns; BCNF needs functional-dependency review and is flagged, not verified
 - **Data Type Optimization**: Identifies antipatterns and inappropriate types
 - **Constraint Analysis**: Finds missing foreign keys, unique constraints, and checks
 - **ERD Generation**: Creates Mermaid diagrams from DDL or JSON schema
@@ -14,16 +14,16 @@ A comprehensive database design and analysis toolkit that provides expert-level 
 ### ⚡ Index Optimizer  
 - **Missing Index Detection**: Identifies indexes needed for query patterns
 - **Composite Index Design**: Optimizes column ordering for maximum efficiency
-- **Redundancy Analysis**: Finds duplicate and overlapping indexes
-- **Performance Modeling**: Estimates selectivity and query performance impact
-- **Covering Index Recommendations**: Eliminates table lookups
+- **Redundancy Analysis**: Finds duplicate and overlapping indexes from supplied schema; does not inspect live index-usage statistics
+- **Performance Modeling**: Estimates selectivity and likely impact from supplied schema/query patterns; validate with database query plans
+- **Covering Index Recommendations**: Suggests covering indexes; review against the database's actual query plan
 
 ### 🚀 Migration Generator
-- **Zero-Downtime Migrations**: Implements expand-contract patterns
+- **Expand-Contract SQL**: Generates selected expand-contract steps; zero downtime depends on application rollout, data volume, and database behavior
 - **Schema Evolution**: Handles column changes, table renames, constraint updates
-- **Data Migration Scripts**: Automated data transformation and validation
-- **Rollback Planning**: Complete reversal capabilities for all changes
-- **Execution Orchestration**: Dependency-aware migration ordering
+- **Schema Migration Plans**: Generates schema-change SQL and optional validation queries; application-specific data mapping is not generated
+- **Rollback Suggestions**: Generates reversal SQL where possible; destructive changes may be irreversible or use placeholder SQL
+- **Execution Plan**: Orders proposed migration steps by dependencies; the tool does not execute migrations
 
 ## Quick Start
 
@@ -103,10 +103,8 @@ python migration_generator.py --current current.json --target target.json --incl
 - JSON schema definitions (.json)
 
 **Key Capabilities:**
-- Detects 1NF violations (non-atomic values, repeating groups)
-- Identifies 2NF issues (partial dependencies in composite keys)
-- Finds 3NF problems (transitive dependencies)
-- Checks BCNF compliance (determinant key requirements)
+- Heuristically flags selected 1NF, 2NF, and 3NF patterns from supplied schema metadata
+- Flags some composite-key cases for BCNF review; it cannot verify functional dependencies from this input
 - Validates data types (VARCHAR(255) antipattern, inappropriate types)
 - Missing constraints (NOT NULL, UNIQUE, CHECK, foreign keys)
 - Naming convention adherence
@@ -137,7 +135,7 @@ python schema_analyzer.py \
 - Composite index column ordering optimization  
 - Covering index recommendations for SELECT queries
 - Foreign key index validation
-- Redundancy detection (duplicates, overlaps, unused indexes)
+- Redundancy detection for duplicate/overlapping indexes in supplied schema; runtime index usage is not measured
 - Performance impact modeling
 
 **Sample Command:**
@@ -165,8 +163,7 @@ python index_optimizer.py \
 
 **Migration Strategies:**
 - Standard migrations with ALTER statements
-- Zero-downtime expand-contract patterns
-- Data migration and transformation scripts
+- Expand-contract SQL steps for selected schema changes; application dual-writes and backfills require separate implementation and review
 - Constraint management (add/drop in correct order)
 - Index management with timing estimates
 
@@ -182,7 +179,7 @@ python migration_generator.py \
 
 **Output:**
 - Step-by-step migration plan
-- Forward and rollback SQL statements
+- Forward SQL and rollback suggestions; rollback placeholders or data loss are possible for destructive changes
 - Risk assessment for each step
 - Validation queries
 - Execution time estimates
@@ -319,12 +316,12 @@ The index optimizer uses pattern-based selectivity estimation. You can improve a
 ```
 
 ### Zero-Downtime Migration Strategy
-For production systems, use the zero-downtime flag to generate expand-contract migrations:
+For production systems, `--zero-downtime` generates selected expand-contract SQL steps. It does not coordinate application dual-writes or guarantee zero downtime. Review the plan for your database engine and deployment sequence:
 
 1. **Expand Phase**: Add new columns/tables without constraints
-2. **Dual Write**: Application writes to both old and new structures  
-3. **Backfill**: Populate new structures with existing data
-4. **Contract Phase**: Remove old structures after validation
+2. **Dual Write**: Implement application writes to both old and new structures as a separate deployment step
+3. **Backfill**: Plan and run a separate backfill; generated SQL only copies a column in selected cases
+4. **Contract Phase**: Remove old structures only after validation and rollback needs are addressed
 
 ### Integration with CI/CD
 Integrate these tools into your deployment pipeline:
