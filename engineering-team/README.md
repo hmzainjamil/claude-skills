@@ -57,16 +57,16 @@ npx ai-agent-skills install alirezarezvani/claude-skills/engineering-team/senior
 
 ## 📦 Skills Package
 
-All skills follow the exact structure from your fullstack-engineer example:
+Skill layouts vary by project. Check each skill's `SKILL.md` and its directory for the files it actually includes:
 
 ```
 skill-name/
 ├── SKILL.md                  # Main skill documentation
-├── references/               # 3 detailed reference guides
+├── references/               # Optional supporting guides
 │   ├── [topic]_patterns.md
 │   ├── [topic]_guide.md
 │   └── [topic]_practices.md
-└── scripts/                  # 3 automation scripts
+└── scripts/                  # Optional helper scripts
     ├── [tool]_generator.py
     ├── [tool]_analyzer.py
     └── [tool]_scaffolder.py
@@ -577,10 +577,7 @@ This page summarizes **9 engineering skills**; the branch currently contains 36 
 8. ✅ **Code Reviewer** - Code review automation
 9. ✅ **Senior Security** - Security architecture
 
-Each skill includes:
-- **Comprehensive SKILL.md** with quick start guide
-- **3 reference guides** with patterns and best practices
-- **3 automation scripts** for common tasks
+Each skill has its own layout and capabilities. Review its `SKILL.md` and checked-in files before following setup or script examples.
 
 ---
 
