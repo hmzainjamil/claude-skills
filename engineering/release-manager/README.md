@@ -170,6 +170,8 @@ release-manager/
 
 ### CI/CD Pipeline Integration
 
+Illustrative workflow only, not run or validated. It assumes you copy the scripts into your target repository's `scripts/` directory; the files in this skill repo are at its root. Repositories without a prior Git tag also need a separate initial-version path.
+
 ```yaml
 # .github/workflows/release.yml
 name: Automated Release
