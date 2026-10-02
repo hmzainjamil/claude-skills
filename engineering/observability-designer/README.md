@@ -4,7 +4,7 @@ A set of Python scripts that generate SLI/SLO framework drafts, heuristic alert-
 
 ## Overview
 
-The Observability Designer skill provides three powerful Python scripts that help you create, optimize, and maintain observability systems:
+The Observability Designer skill includes three Python scripts that draft observability artifacts from supplied service and alert data:
 
 - **SLO Designer**: Generate proposed SLIs/SLOs, error-budget calculations, and burn-rate alert rules from service type and criticality inputs
 - **Alert Optimizer**: Apply rule-pattern checks to supplied alert configurations; optional historical fields can inform heuristic noise scoring and recommendations
