@@ -2,11 +2,11 @@
 
 **Tier:** POWERFUL  
 **Category:** Engineering - Migration Strategy  
-**Purpose:** Zero-downtime migration planning, compatibility validation, and rollback strategy generation
+**Purpose:** Draft migration plans, compare supplied schema/API descriptions, and generate rollback runbook templates
 
 ## Overview
 
-The Migration Architect skill provides comprehensive tools and methodologies for planning, executing, and validating complex system migrations with minimal business impact. This skill combines proven migration patterns with automated planning tools to ensure successful transitions between systems, databases, and infrastructure.
+The Migration Architect provides scripts and reference material for drafting migration plans and reviewing supplied schema/API descriptions. Outputs are templates based on fixed rules; they do not execute migrations, validate live compatibility or data, monitor rollback triggers, or guarantee zero downtime or successful transitions.
 
 ## Components
 
@@ -41,7 +41,7 @@ python3 scripts/migration_planner.py \
 ```
 
 **Input:** Migration specification with source, target, constraints, and requirements
-**Output:** Detailed phased migration plan with risk assessment, timeline, and validation gates
+**Output:** Draft phased plan with heuristic risk, duration estimates, and proposed validation gates
 
 ### 2. Check Compatibility
 
@@ -55,7 +55,7 @@ python3 scripts/compatibility_checker.py \
 ```
 
 **Input:** Before and after schema definitions
-**Output:** Compatibility report with breaking changes, migration scripts, and recommendations
+**Output:** Static compatibility report with potential breaking changes, suggested migration steps, and recommendations; review against actual consumers and database behavior
 
 ### 3. Generate Rollback Procedures
 
@@ -67,17 +67,17 @@ python3 scripts/rollback_generator.py \
 ```
 
 **Input:** Migration plan from step 1
-**Output:** Comprehensive rollback runbook with procedures, triggers, and communication templates
+**Output:** Draft rollback runbook with proposed steps, trigger conditions, and communication templates; no monitoring or rollback execution
 
 ## Script Details
 
 ### Migration Planner (`migration_planner.py`)
 
-Generates comprehensive migration plans with:
+Generates draft migration plans using preset phase sequences, risk templates, and duration formulas:
 
 - **Phased approach** with dependencies and validation gates
 - **Risk assessment** with mitigation strategies
-- **Timeline estimation** based on complexity and constraints
+- **Formula-based duration estimates** from input constraints and fixed complexity multipliers
 - **Rollback triggers** and success criteria
 - **Stakeholder communication** templates
 
@@ -110,7 +110,7 @@ Options:
 
 ### Compatibility Checker (`compatibility_checker.py`)
 
-Analyzes compatibility between schema versions:
+Compares supported fields and types in supplied JSON descriptions using static rules; it does not test actual client/database compatibility:
 
 - **Breaking change detection** (removed fields, type changes, constraint additions)
 - **Data migration requirements** identification
@@ -136,7 +136,7 @@ Options:
 
 ### Rollback Generator (`rollback_generator.py`)
 
-Creates comprehensive rollback procedures:
+Generates rollback runbook drafts from the migration plan; it does not execute or test the procedures:
 
 - **Phase-by-phase rollback** steps
 - **Automated trigger conditions** for rollback
@@ -154,25 +154,9 @@ Options:
   --format, -f    Output format: json, text, both (default: both)
 ```
 
-## Migration Patterns Supported
+## Migration Planning Templates
 
-### Database Migrations
-
-- **Expand-Contract Pattern** - Zero-downtime schema evolution
-- **Parallel Schema Pattern** - Side-by-side schema migration
-- **Event Sourcing Migration** - Event-driven data migration
-
-### Service Migrations
-
-- **Strangler Fig Pattern** - Gradual legacy system replacement
-- **Parallel Run Pattern** - Risk mitigation through dual execution
-- **Blue-Green Deployment** - Zero-downtime service updates
-
-### Infrastructure Migrations
-
-- **Lift and Shift** - Quick cloud migration with minimal changes
-- **Hybrid Cloud Migration** - Gradual cloud adoption
-- **Multi-Cloud Migration** - Distribution across multiple providers
+The planner has preset templates for database `schema_change` and `data_migration`, service `strangler_fig` and `parallel_run`, and infrastructure `cloud_migration` and `on_prem_to_cloud`. Reference documents discuss additional patterns; their presence in references does not mean the scripts implement or validate them. None of these templates guarantees zero downtime.
 
 ## Sample Workflow
 
