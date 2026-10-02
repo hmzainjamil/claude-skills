@@ -1,6 +1,6 @@
 # MCP Server Builder
 
-Generate and validate MCP servers from OpenAPI contracts with production-focused tooling. This skill helps teams bootstrap fast and enforce schema quality before shipping.
+Generate MCP tool manifests and starter server scaffolds from OpenAPI specs, then run structural checks on the manifest. This skill helps teams bootstrap MCP integrations; generated output still needs implementation, testing, and deployment review.
 
 ## Quick Start
 
