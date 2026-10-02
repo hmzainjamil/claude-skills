@@ -4,12 +4,14 @@ Structured tracking for technical changes (TCs) with a strict state machine, app
 
 ## Quick Start
 
+Run these commands from the `claude-skills` repository root. Replace `/path/to/project` with the target project directory.
+
 ```bash
 # 1. Initialize tracking in your project
-python3 scripts/tc_init.py --project "My Project" --root .
+python3 engineering/tc-tracker/scripts/tc_init.py --project "My Project" --root /path/to/project
 
 # 2. Create a new TC
-python3 scripts/tc_create.py --root . \
+python3 engineering/tc-tracker/scripts/tc_create.py --root /path/to/project \
   --name "user-auth" \
   --title "Add JWT authentication" \
   --scope feature --priority high \
@@ -17,21 +19,21 @@ python3 scripts/tc_create.py --root . \
   --motivation "Required for protected endpoints"
 
 # 3. Move it to in_progress and record some work
-python3 scripts/tc_update.py --root . --tc-id <TC-ID> \
+python3 engineering/tc-tracker/scripts/tc_update.py --root /path/to/project --tc-id <TC-ID> \
   --set-status in_progress --reason "Starting implementation"
 
-python3 scripts/tc_update.py --root . --tc-id <TC-ID> \
+python3 engineering/tc-tracker/scripts/tc_update.py --root /path/to/project --tc-id <TC-ID> \
   --add-file src/auth.py:created \
   --add-file src/middleware.py:modified
 
 # 4. Write a session handoff before stopping
-python3 scripts/tc_update.py --root . --tc-id <TC-ID> \
+python3 engineering/tc-tracker/scripts/tc_update.py --root /path/to/project --tc-id <TC-ID> \
   --handoff-progress "JWT middleware wired up" \
   --handoff-next "Write integration tests" \
   --handoff-blocker "Waiting on test fixtures"
 
 # 5. Check status
-python3 scripts/tc_status.py --root . --all
+python3 engineering/tc-tracker/scripts/tc_status.py --root /path/to/project --all
 ```
 
 ## Included Scripts
@@ -42,10 +44,7 @@ python3 scripts/tc_status.py --root . --all
 - `scripts/tc_status.py` — View a single TC or the full registry
 - `scripts/tc_validator.py` — Validate a record or registry against schema + state machine
 
-All scripts:
-- Use Python stdlib only
-- Support `--help` and `--json`
-- Use exit codes 0 (ok) / 1 (warnings) / 2 (errors)
+All scripts use the Python standard library and support `--help` and `--json`. Exit codes vary: `tc_validator.py` returns 1 when validation errors exist; the other scripts return 0 on success and 2 for handled CLI or I/O errors.
 
 ## References
 
@@ -55,7 +54,7 @@ All scripts:
 
 ## Slash Command
 
-When installed with the rest of this repo, the `/tc <subcommand>` slash command (defined at `commands/tc.md`) dispatches to these scripts.
+When installed with the rest of this repository, the `/tc <subcommand>` slash command in the repository-root `commands/tc.md` dispatches to these scripts.
 
 ## Installation
 
