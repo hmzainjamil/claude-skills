@@ -6,7 +6,7 @@ A toolkit for drafting interview loops and question banks, plus exploratory comp
 
 The Interview System Designer includes three Python tools and reference materials for drafting interview plans and reviewing supplied score data:
 
-1. **Interview Loop Designer** - Generate calibrated interview loops for any role and level
+1. **Interview Loop Designer** - Draft interview loops from built-in role and level templates
 2. **Question Bank Generator** - Create competency-based interview questions with scoring rubrics
 3. **Hiring Calibrator** - Analyze interview data to detect bias and calibration issues
 
@@ -14,11 +14,11 @@ The Interview System Designer includes three Python tools and reference material
 
 ### 1. Interview Loop Designer (`loop_designer.py`)
 
-Generates complete interview loops tailored to specific roles, levels, and teams.
+Generates draft interview loops using built-in role, level, and team mappings; review them against the actual job requirements.
 
 **Features:**
 - Role-specific competency mapping (SWE, PM, Designer, Data, DevOps, Leadership)
-- Level-appropriate interview rounds (junior through principal)
+- Template interview rounds for listed levels (junior through principal)
 - Optimized scheduling and time allocation
 - Interviewer skill requirements
 - Standardized scorecard templates
@@ -117,7 +117,7 @@ Compares supplied interview scores and outcomes using fixed thresholds, then pro
 - Interviewer calibration analysis
 - Score distribution and trending analysis
 - Specific coaching recommendations
-- Comprehensive reporting with actionable insights
+- Structured reports with heuristic recommendations
 
 **Usage:**
 ```bash
