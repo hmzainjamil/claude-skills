@@ -177,8 +177,9 @@ Agent 1's output becomes Agent 2's input. Each phase builds on the previous resu
 | `session_manager.py` | Session state machine (init→running→evaluating→merged) | `python scripts/session_manager.py --list` |
 | `dag_analyzer.py` | Git DAG analysis — frontier detection, branch status | `python scripts/dag_analyzer.py --status --session 20260317-143022` |
 | `result_ranker.py` | Evaluate and rank agent results by metric or diff | `python scripts/result_ranker.py --session 20260317-143022 --eval-cmd "pytest bench.py --json" --metric p50_ms --direction lower` |
+| `dry_run.py` | Check plugin metadata, skill frontmatter, Markdown structure, references, and script help without creating sessions or worktrees | `python scripts/dry_run.py --verbose` |
 
-All scripts support `--help` for full usage and `--demo` for example output.
+The five workflow scripts support `--help` and `--demo`. The separate `dry_run.py` validator supports `--help` and `--verbose`.
 
 ## Installation
 
