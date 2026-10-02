@@ -1,10 +1,10 @@
 # Dependency Auditor
 
-A comprehensive toolkit for analyzing, auditing, and managing dependencies across multi-language software projects. This skill provides vulnerability scanning, license compliance checking, and upgrade path planning with zero external dependencies.
+A Python toolkit that parses selected dependency files, checks them against bundled vulnerability and license data, and drafts upgrade plans. These are heuristic aids, not a complete or current security, legal, or package-update service.
 
 ## Overview
 
-The Dependency Auditor skill consists of three main Python scripts that work together to provide complete dependency management capabilities:
+The Dependency Auditor includes three Python scripts for dependency inventory analysis, license classification, and upgrade-plan drafting:
 
 - **`dep_scanner.py`**: Vulnerability scanning and dependency analysis
 - **`license_checker.py`**: License compliance and conflict detection  
@@ -14,19 +14,19 @@ The Dependency Auditor skill consists of three main Python scripts that work tog
 
 ### 🔍 Vulnerability Scanning
 - Multi-language dependency parsing (JavaScript, Python, Go, Rust, Ruby, Java)
-- Built-in vulnerability database with common CVE patterns
-- CVSS scoring and risk assessment
+- Bundled vulnerability entries for selected packages; no live vulnerability-feed sync
+- Bundled CVSS values and rule-based risk labels for listed entries
 - JSON and human-readable output formats
-- CI/CD integration support
+- CLI output suitable for use in a separately configured CI/CD job
 
 ### ⚖️ License Compliance
-- Comprehensive license classification and compatibility analysis
-- Automatic conflict detection between project and dependency licenses
+- Built-in license classification and compatibility heuristics
+- Potential conflict checks based on recognized project/dependency license identifiers
 - Risk assessment for commercial usage and distribution
 - Compliance scoring and reporting
 
 ### 📈 Upgrade Planning
-- Semantic versioning analysis with breaking change prediction
+- Version-pattern classification and heuristic breaking-change risk estimates
 - Risk-based upgrade prioritization
 - Phased migration plans with rollback procedures
 - Security-focused upgrade recommendations
@@ -88,7 +88,7 @@ python upgrade_planner.py scan_results.json --security-only --format json
 
 ### Dependency Scanner (`dep_scanner.py`)
 
-The dependency scanner parses project files to extract dependencies and check them against a built-in vulnerability database.
+The dependency scanner parses supported project files and checks extracted dependencies against a small, bundled vulnerability list. It does not query a current vulnerability feed; a clean result does not establish that dependencies are vulnerability-free.
 
 #### Supported File Formats
 - **JavaScript/Node.js**: package.json, package-lock.json, yarn.lock
@@ -124,7 +124,7 @@ Examples:
 ============================================================
 DEPENDENCY SECURITY SCAN REPORT
 ============================================================
-Scan Date: 2024-02-16T15:30:00.000Z
+Illustrative sample timestamp: 2024-02-16T15:30:00.000Z
 Project: /example/sample-web-app
 
 SUMMARY:
@@ -178,7 +178,7 @@ RECOMMENDATIONS:
 
 ### License Checker (`license_checker.py`)
 
-The license checker analyzes dependency licenses for compliance and detects potential conflicts.
+The license checker classifies recognized license metadata and flags potential conflicts using built-in rules. Results are not a legal compliance determination.
 
 #### Command Line Options
 
@@ -221,7 +221,7 @@ The tool includes a comprehensive compatibility matrix that checks:
 
 ### Upgrade Planner (`upgrade_planner.py`)
 
-The upgrade planner analyzes dependency inventories and creates prioritized upgrade plans.
+The upgrade planner classifies dependency versions and drafts prioritized upgrade plans. Its latest-version lookup uses a small hard-coded sample map rather than live package registries.
 
 #### Command Line Options
 
@@ -352,7 +352,9 @@ pipeline {
 
 ### Automated Dependency Updates
 
-#### Weekly Security Updates Script
+#### Illustrative external automation wrapper
+
+This unverified example is not implemented by these tools. The scanner does not supply current vulnerability data, the planner does not fetch current package versions or apply upgrades, and `npm audit fix` can modify project files. Review and adapt every step before use; do not treat this as a ready-to-run security automation.
 
 ```bash
 #!/bin/bash
@@ -395,7 +397,7 @@ fi
 
 ## Sample Files
 
-The `assets/` directory contains sample dependency files for testing:
+The `assets/` directory contains sample dependency files for demonstration:
 
 - `sample_package.json`: Node.js project with various dependencies
 - `sample_requirements.txt`: Python project dependencies
@@ -521,4 +523,4 @@ This skill is licensed under the MIT License. See the project license file for d
 
 ---
 
-**Note**: This tool provides automated analysis to assist with dependency management decisions. Always review recommendations and consult with security and legal teams for critical applications.
+**Note**: Outputs may be incomplete or stale. Cross-check security findings against current authoritative vulnerability data and package registries. Review license findings with qualified legal counsel before making distribution decisions.
