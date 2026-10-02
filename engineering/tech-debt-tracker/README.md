@@ -1,24 +1,26 @@
 # Tech Debt Tracker
 
-A comprehensive technical debt management system that helps engineering teams identify, prioritize, and track technical debt across codebases. This skill provides three interconnected tools for a complete debt management workflow.
+A set of Python scripts that flag selected code patterns, rank supplied debt records with fixed formulas, and summarize historical inventories. Outputs are heuristic signals for human review, not a complete code, security, dependency, or business-impact audit.
 
 ## Overview
 
-Technical debt is like financial debt - it compounds over time and reduces team velocity if not managed systematically. This skill provides:
+**Scope limits:** Scanner findings are pattern-based, Python receives AST checks, and non-Python checks are general text/regex rules. The prioritizer and dashboard use built-in formulas and provided inventories; their scores are not verified business ROI or observed productivity metrics. Review every result before acting.
 
-- **Automated Debt Detection**: Scan codebases to identify various types of technical debt
-- **Intelligent Prioritization**: Use proven frameworks to prioritize debt based on business impact
-- **Trend Analysis**: Track debt evolution over time with executive-friendly dashboards
+Technical debt can affect maintenance and delivery, but its cost varies by project. These scripts provide:
+
+- **Pattern-Based Scanning**: Flag selected code patterns using Python AST checks and general text/regex rules
+- **Heuristic Prioritization**: Apply named WSJF/RICE/Cost-of-Delay-style formulas to inventory fields and fixed weights
+- **Inventory Summaries**: Compare supplied snapshots and report formula-derived scores and trends
 
 ## Tools
 
 ### 1. Debt Scanner (`debt_scanner.py`)
 
-Scans codebases to automatically detect technical debt signals using AST parsing for Python and regex patterns for other languages.
+Flags selected technical-debt signals using AST parsing for Python and general text/regex patterns for other supported file extensions. This is not a full parser or security scanner.
 
 **Features:**
-- Detects 15+ types of technical debt (large functions, complexity, duplicates, security issues, etc.)
-- Multi-language support (Python, JavaScript, Java, C#, Go, etc.)
+- Flags selected signals such as long functions, complexity patterns, duplicate text blocks, TODOs, and a few regex-based code smells
+- Python structure checks plus general text/regex checks for configured extensions (JavaScript, Java, C#, Go, Ruby, PHP, Rust, Kotlin, and C/C++)
 - Configurable thresholds and rules
 - Dual output: JSON for tools, human-readable for reports
 
@@ -36,11 +38,11 @@ python scripts/debt_scanner.py /path/to/codebase --format both
 
 ### 2. Debt Prioritizer (`debt_prioritizer.py`)
 
-Takes debt inventory and creates prioritized backlog using proven prioritization frameworks.
+Ranks a supplied debt inventory using selectable weighted formulas labeled Cost of Delay, WSJF, or RICE. Scores depend on the input fields and configured assumptions; they are not measured ROI.
 
 **Features:**
-- Multiple prioritization frameworks (Cost of Delay, WSJF, RICE)
-- Business impact analysis with ROI calculations  
+- Formula variants labeled Cost of Delay, WSJF, and RICE
+- Rule-based business-impact estimates from debt type and inventory fields; no empirical ROI calculation  
 - Sprint allocation recommendations
 - Effort estimation with risk adjustment
 - Executive and engineering reports
@@ -59,13 +61,13 @@ python scripts/debt_prioritizer.py inventory.json --sprint-capacity 80 --output 
 
 ### 3. Debt Dashboard (`debt_dashboard.py`)
 
-Analyzes historical debt data to provide trend analysis, health scoring, and executive reporting.
+Summarizes supplied scan snapshots with formula-derived health, velocity, and trend metrics; it does not measure team velocity or render an interactive dashboard.
 
 **Features:**
 - Health score trending over time
 - Debt velocity analysis (accumulation vs resolution)
-- Executive summary with business impact
-- Forecasting based on current trends
+- Summary fields and heuristic impact estimates
+- Simple trend-based projections from supplied snapshots
 - Strategic recommendations
 
 **Usage:**
