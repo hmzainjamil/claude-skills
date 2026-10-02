@@ -54,6 +54,10 @@ cp agents/personas/startup-cto.md ~/.claude/agents/
 | [Startup CTO](startup-cto.md) | 🏗️ | Engineering + Strategy | Technical co-founders, architecture decisions, team building |
 | [Growth Marketer](growth-marketer.md) | 🚀 | Marketing + Growth | Bootstrapped founders, content-led growth, launches |
 | [Solo Founder](solo-founder.md) | 🦄 | Cross-domain | One-person startups, side projects, MVP building |
+| [Content Strategist](content-strategist.md) | ✍️ | Content strategy | Content planning and distribution |
+| [DevOps Engineer](devops-engineer.md) | ⚙️ | DevOps | Infrastructure and automation |
+| [Finance Lead](finance-lead.md) | 📊 | Finance | Startup finance and reporting |
+| [Product Manager](product-manager.md) | 🧭 | Product | Product planning and prioritization |
 
 ## Personas vs Task Agents
 
