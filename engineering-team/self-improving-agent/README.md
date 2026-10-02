@@ -1,12 +1,12 @@
 # Self-Improving Agent
 
-> Auto-memory captures. This plugin curates.
+> Auto-memory may capture. These prompt-driven workflows help curate.
 
-A Claude Code plugin that turns auto-memory into a structured self-improvement loop. Analyze what Claude has learned, promote proven patterns to enforced rules, and extract recurring solutions into reusable skills.
+A Claude Code plugin that provides prompt-driven workflows for reviewing auto-memory, proposing durable rules, and drafting reusable skills. Review and approve every proposed change.
 
 ## Why
 
-Claude Code's auto-memory (v2.1.32+) automatically records project patterns in `MEMORY.md`. But it has no judgment about what to keep, what to promote, or when entries go stale. This plugin adds the intelligence layer.
+When Claude Code auto-memory is available and enabled, it can record project patterns in `MEMORY.md`. These workflow prompts help review those notes; they do not run a background memory service or independently verify patterns.
 
 **The difference:**
 - **MEMORY.md**: "I noticed this project uses pnpm" (background note, truncated at 200 lines)
@@ -62,19 +62,21 @@ Space freed for new learnings
 |-----------|-------|-------------|
 | Skills | 5 | review, promote, extract, status, remember |
 | Agents | 2 | memory-analyst, skill-extractor |
-| Hooks | 1 | PostToolUse error capture (zero overhead on success) |
+| Hooks | 1 | PostToolUse Bash-output scanner that emits an error reminder when fixed patterns match |
 | Reference docs | 3 | memory architecture, promotion rules, rules directory patterns |
 | Templates | 2 | rule template, skill template |
 
 ## Design Principles
 
-1. **Don't fight auto-memory — orchestrate it.** Auto-memory captures. This plugin curates.
-2. **No duplicate storage.** Reads from `~/.claude/projects/` directly. No `.learnings/` directory.
-3. **Zero capture overhead.** Auto-memory handles capture. Hook only fires on errors.
+1. **Work with host memory.** When host auto-memory is available, review and curate its entries through explicit prompts.
+2. **No separate database included.** The workflows target host memory and instruction files; users review and confirm changes.
+3. **Error reminder hook.** The hook runs after Bash calls, scans output against fixed patterns, and emits a reminder on matches. It does not save to memory; false positives and missed errors are possible.
 4. **Promotion = graduation.** Moving a pattern from MEMORY.md to CLAUDE.md changes its priority.
-5. **Respect the 200-line limit.** Actively manages MEMORY.md capacity.
+5. **Check host limits.** Memory capacity behavior can vary by host version and settings.
 
 ## Platform Support
+
+These entries describe intended adaptations and install paths; they do not prove equivalent command or hook behavior across host versions. Verify the host-specific setup before relying on an integration.
 
 | Platform | Memory System | Support |
 |----------|--------------|---------|
