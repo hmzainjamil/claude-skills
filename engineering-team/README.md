@@ -1,6 +1,6 @@
 # Engineering Skills Collection
 
-Complete set of 18 engineering role skills tailored to your tech stack (ReactJS, NextJS, NodeJS, Express, React Native, Swift, Kotlin, Flutter, Postgres, GraphQL, Go, Python).
+36 skill directories are present in this branch; this index summarizes 9 engineering roles tailored to your tech stack (ReactJS, NextJS, NodeJS, Express, React Native, Swift, Kotlin, Flutter, Postgres, GraphQL, Go, Python).
 
 ## ⚡ Installation
 
@@ -565,7 +565,7 @@ Edit markdown files to add:
 
 ## 🎯 Summary
 
-You now have **9 comprehensive engineering skills** that match your tech stack:
+This page summarizes **9 engineering skills**; the branch currently contains 36 skill directories:
 
 1. ✅ **Senior Architect** - System design and architecture
 2. ✅ **Senior Frontend** - React/Next.js development
