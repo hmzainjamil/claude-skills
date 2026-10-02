@@ -39,9 +39,13 @@ cp agents/personas/startup-cto.md ~/.claude/agents/
 
 | Persona | Emoji | Domain | Best For |
 |---------|-------|--------|----------|
-| [Startup CTO](startup-cto.md) | 🏗️ | Engineering + Strategy | Technical co-founders, architecture decisions, team building |
+| [Content Strategist](content-strategist.md) | ✍️ | Content + SEO | Editorial strategy, content systems, search growth |
+| [DevOps Engineer](devops-engineer.md) | 🔧 | Infrastructure | CI/CD, reliability, production operations |
+| [Finance Lead](finance-lead.md) | 💰 | Startup Finance | Runway, unit economics, fundraising |
 | [Growth Marketer](growth-marketer.md) | 🚀 | Marketing + Growth | Bootstrapped founders, content-led growth, launches |
+| [Product Manager](product-manager.md) | 📋 | Product Strategy | Discovery, specs, prioritization |
 | [Solo Founder](solo-founder.md) | 🦄 | Cross-domain | One-person startups, side projects, MVP building |
+| [Startup CTO](startup-cto.md) | 🏗️ | Engineering + Strategy | Technical co-founders, architecture decisions, team building |
 
 ## Personas vs Task Agents
 
