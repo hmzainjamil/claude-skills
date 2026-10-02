@@ -1,10 +1,10 @@
 # Interview System Designer
 
-A comprehensive toolkit for designing, optimizing, and calibrating interview processes. This skill provides tools to create role-specific interview loops, generate competency-based question banks, and analyze hiring data for bias and calibration issues.
+A toolkit for drafting interview loops and question banks, plus exploratory comparisons of supplied interview-score data. Generated plans and score disparities need human review; they do not establish hiring validity or discrimination.
 
 ## Overview
 
-The Interview System Designer skill includes three powerful Python tools and comprehensive reference materials to help you build fair, effective, and scalable hiring processes:
+The Interview System Designer includes three Python tools and reference materials for drafting interview plans and reviewing supplied score data:
 
 1. **Interview Loop Designer** - Generate calibrated interview loops for any role and level
 2. **Question Bank Generator** - Create competency-based interview questions with scoring rubrics
@@ -108,10 +108,12 @@ python3 question_bank_generator.py --role "DevOps Engineer" --levels junior,mid,
 
 ### 3. Hiring Calibrator (`hiring_calibrator.py`)
 
-Analyzes interview scores to detect bias, calibration issues, and provides recommendations.
+The current demographic screen compares raw hire-rate gaps above 10 percentage points and mean-score gaps above 0.5, only when each compared group has at least five records. These are simple disparity flags, not significance tests or proof of bias. Review results with qualified people before changing hiring decisions or processes. Handle candidate data under your organization's approved privacy controls.
+
+Compares supplied interview scores and outcomes using fixed thresholds, then produces heuristic recommendations. It does not establish that bias or discrimination occurred.
 
 **Features:**
-- Statistical bias detection across demographics
+- Exploratory demographic group-disparity screening with fixed thresholds
 - Interviewer calibration analysis
 - Score distribution and trending analysis
 - Specific coaching recommendations
