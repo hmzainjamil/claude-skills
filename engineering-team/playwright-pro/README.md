@@ -1,8 +1,8 @@
 # Playwright Pro
 
-> Production-grade Playwright testing toolkit for AI coding agents.
+> Playwright test guidance and templates for AI coding agents. Generated or reviewed tests still need project-specific execution and review.
 
-Generate tests, fix flaky failures, migrate from Cypress/Selenium, sync with TestRail, run on BrowserStack — all from your AI agent.
+Includes prompt-driven guidance for generating and reviewing tests, diagnosing failures, and planning Cypress/Selenium migrations. External integrations require working MCP servers and credentials.
 
 ## Install
 
@@ -34,7 +34,7 @@ claude --plugin-dir ./engineering-team/playwright-pro
 # In Claude Code:
 /pw:init                              # Set up Playwright
 /pw:generate "user can log in"        # Generate your first test
-# Tests are auto-validated by hooks — no extra steps
+# A hook scans selected test files for a few common patterns; it does not run or validate tests
 ```
 
 ## What's Inside
@@ -74,11 +74,13 @@ Ready-to-use, parametrizable templates covering:
 
 ### Smart Hooks
 
-- Auto-validates test quality when you write `*.spec.ts` files
+- Scans selected `.spec.ts`, `.spec.js`, `.test.ts`, and `.test.js` files for a few text patterns; it does not run tests or establish test quality
 - Auto-detects Playwright projects on session start
-- Zero configuration required
+- Hook behavior depends on the Claude Code plugin installation and host configuration
 
 ## Integrations Setup
+
+The current `.mcp.json` points to `integrations/testrail-mcp/src/index.ts` and `integrations/browserstack-mcp/src/index.ts`, which are not present in this repository tree. The integrations are not runnable from this checkout until those servers are supplied and configured. Do not treat the setup examples below as working integrations.
 
 ### TestRail (Optional)
 
