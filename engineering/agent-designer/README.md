@@ -350,17 +350,23 @@ See the `references/` directory for detailed documentation:
 
 ```python
 import json
-import openai
+from openai import OpenAI
 
-# Load generated OpenAI schemas
+client = OpenAI()
+
+# Load generated OpenAI function schemas and adapt them to the current tools format
 with open('my_tools_openai.json') as f:
     schemas = json.load(f)
 
-# Use with OpenAI function calling
-response = openai.ChatCompletion.create(
-    model="gpt-4",
+tools = [
+    {"type": "function", "function": function}
+    for function in schemas["functions"]
+]
+
+response = client.chat.completions.create(
+    model="YOUR_MODEL",
     messages=[{"role": "user", "content": "Search for AI news"}],
-    functions=schemas['functions']
+    tools=tools
 )
 ```
 
