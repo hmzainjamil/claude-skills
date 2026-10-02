@@ -1,6 +1,6 @@
 # Code → PRD
 
-Reverse-engineer any codebase into a complete Product Requirements Document (PRD).
+Static analysis tools that extract selected routes, API references, and project signals, then scaffold a PRD draft. They do not generate a complete or validated PRD; review extracted data and fill the marked sections.
 
 ## Quick Start
 
@@ -15,6 +15,8 @@ python3 scripts/prd_scaffolder.py analysis.json -o prd/ -n "My App"
 
 ## Supported Frameworks
 
+The analyzer uses file and text patterns for these stacks; coverage is partial and may miss routes or APIs that do not match its patterns.
+
 | Stack | Frameworks |
 |-------|-----------|
 | Frontend | React, Vue, Angular, Svelte, Next.js, Nuxt, SvelteKit, Remix |
@@ -23,7 +25,9 @@ python3 scripts/prd_scaffolder.py analysis.json -o prd/ -n "My App"
 
 ## What It Generates
 
-```
+The scaffolder creates a PRD skeleton populated with signals found by the analyzer. Sections marked TODO require human completion.
+
+```text
 prd/
 ├── README.md                  # System overview
 ├── pages/
@@ -39,10 +43,10 @@ prd/
 
 | Script | Purpose |
 |--------|---------|
-| `codebase_analyzer.py` | Scan codebase → extract routes, APIs, models, enums |
-| `prd_scaffolder.py` | Generate PRD directory skeleton from analysis JSON |
+| `codebase_analyzer.py` | Scan supported source files with heuristics and output selected routes, APIs, models, and signals |
+| `prd_scaffolder.py` | Generate a PRD directory skeleton and TODO placeholders from analysis JSON |
 
-Both are stdlib-only — no pip install needed. Run `--help` for full usage.
+Both scripts use the Python standard library. Run `--help` for usage.
 
 ## References
 
