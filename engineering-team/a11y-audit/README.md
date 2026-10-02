@@ -1,6 +1,6 @@
 # A11y Audit — WCAG 2.2 Accessibility Audit & Fix
 
-Audit and fix WCAG 2.2 accessibility issues in any frontend project. Covers React, Next.js, Vue, Angular, Svelte, and plain HTML.
+Run static checks for selected accessibility patterns in HTML, JSX/TSX, Vue, Svelte, and CSS used by frontend projects. Findings need manual and browser-based review; this is not a complete WCAG audit or proof of compliance.
 
 ## Quick Start
 
@@ -17,10 +17,10 @@ python3 scripts/contrast_checker.py "#1a1a2e" "#ffffff"
 
 | Script | Purpose |
 |--------|---------|
-| `a11y_scanner.py` | Scan HTML/JSX/TSX/Vue/Svelte/CSS for 20+ a11y violations |
+| `a11y_scanner.py` | Scan supported source files for selected rule-based accessibility findings |
 | `contrast_checker.py` | WCAG contrast ratio calculator with AA/AAA checks and `--suggest` mode |
 
-Both are stdlib-only — no pip install needed. CI-friendly exit codes (0 = pass, 1 = blocking issues).
+Both are stdlib-only — no pip install needed. Exit codes differ: scanner returns 1 for critical/serious findings, 2 for moderate/minor findings, and 0 otherwise; contrast checker returns 0 when the AA normal-text ratio passes and 1 when it fails or input is invalid. A zero scanner exit does not mean no findings or WCAG compliance.
 
 ## What It Covers
 
