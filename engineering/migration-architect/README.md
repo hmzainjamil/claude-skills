@@ -12,14 +12,14 @@ The Migration Architect provides scripts and reference material for drafting mig
 
 ### Core Scripts
 
-1. **migration_planner.py** - Automated migration plan generation
+1. **migration_planner.py** - Draft migration plan generation
 2. **compatibility_checker.py** - Schema and API compatibility analysis  
-3. **rollback_generator.py** - Comprehensive rollback procedure generation
+3. **rollback_generator.py** - Rollback runbook draft generation
 
 ### Reference Documentation
 
-- **migration_patterns_catalog.md** - Detailed catalog of proven migration patterns
-- **zero_downtime_techniques.md** - Comprehensive zero-downtime migration techniques
+- **migration_patterns_catalog.md** - Reference descriptions of migration patterns
+- **zero_downtime_techniques.md** - Reference guidance that requires system-specific review
 - **data_reconciliation_strategies.md** - Advanced data consistency and reconciliation strategies
 
 ### Sample Assets
@@ -139,10 +139,10 @@ Options:
 Generates rollback runbook drafts from the migration plan; it does not execute or test the procedures:
 
 - **Phase-by-phase rollback** steps
-- **Automated trigger conditions** for rollback
+- **Proposed trigger conditions** for human review; the script does not monitor or execute rollback
 - **Data recovery procedures** 
 - **Communication templates** for different audiences
-- **Validation checklists** for rollback success
+- **Suggested validation checklists** for rollback review
 
 **Usage:**
 ```bash
