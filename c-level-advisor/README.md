@@ -1,6 +1,6 @@
 # C-Level Advisory Skills Collection
 
-**Complete suite of 2 executive leadership skills** covering CEO and CTO strategic decision-making and organizational leadership.
+**Collection of 28 executive and leadership skills.** This page documents the CEO and CTO workflows; see the directory for the full collection.
 
 ---
 
@@ -53,7 +53,7 @@ npx ai-agent-skills install alirezarezvani/claude-skills/c-level-advisor/cto-adv
 This C-Level advisory skills collection provides executive leadership guidance for strategic decision-making, organizational development, and stakeholder management.
 
 **What's Included:**
-- **2 executive-level skills** for CEO and CTO roles
+- **28 skills** are present in this collection; this page details the CEO and CTO roles
 - **6 Python analysis tools** for strategy, finance, tech debt, and team scaling
 - **Comprehensive frameworks** for executive decision-making, board governance, and technology leadership
 - **Ready-to-use templates** for board presentations, ADRs, and strategic planning
