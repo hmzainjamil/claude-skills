@@ -1,14 +1,14 @@
 # Observability Designer
 
-A comprehensive toolkit for designing production-ready observability strategies including SLI/SLO frameworks, alert optimization, and dashboard generation.
+A set of Python scripts that generate SLI/SLO framework drafts, heuristic alert-analysis recommendations, and dashboard specifications from supplied inputs. Outputs are starting points for review, not deployed observability systems.
 
 ## Overview
 
 The Observability Designer skill provides three powerful Python scripts that help you create, optimize, and maintain observability systems:
 
-- **SLO Designer**: Generate complete SLI/SLO frameworks with error budgets and burn rate alerts
-- **Alert Optimizer**: Analyze and optimize existing alert configurations to reduce noise and improve effectiveness
-- **Dashboard Generator**: Create comprehensive dashboard specifications with role-based layouts and drill-down paths
+- **SLO Designer**: Generate proposed SLIs/SLOs, error-budget calculations, and burn-rate alert rules from service type and criticality inputs
+- **Alert Optimizer**: Apply rule-pattern checks to supplied alert configurations; optional historical fields can inform heuristic noise scoring and recommendations
+- **Dashboard Generator**: Create dashboard specifications with role-based layouts and generated drill-down paths
 
 ## Quick Start
 
@@ -101,8 +101,8 @@ python3 scripts/slo_designer.py --input assets/sample_service_web.json --summary
 Analyzes existing alert configurations and provides optimization recommendations.
 
 #### Features
-- **Noise Detection**: Identifies alerts with high false positive rates
-- **Coverage Analysis**: Finds gaps in monitoring coverage
+- **Noise Detection**: Scores rule patterns and optional user-supplied firing/false-positive history; it does not measure live alert outcomes
+- **Coverage Analysis**: Compares supplied alert categories and names with built-in expected categories
 - **Duplicate Detection**: Locates redundant or overlapping alerts  
 - **Threshold Analysis**: Reviews alert thresholds for appropriateness
 - **Fatigue Assessment**: Evaluates alert volume and routing
@@ -173,7 +173,7 @@ Creates comprehensive dashboard specifications with role-based optimization.
 - **Golden Signals Coverage**: Automatic inclusion of key monitoring metrics
 - **Service-Type Specific Panels**: Tailored panels based on service characteristics
 - **Interactive Elements**: Template variables, drill-down paths, time range controls
-- **Grafana Compatibility**: Generates Grafana-compatible JSON
+- **Grafana-shaped Export**: Converts generated specifications to a Grafana JSON-shaped structure; validate it in the target Grafana version before import
 
 #### Usage Examples
 
@@ -252,31 +252,17 @@ The `expected_outputs/` directory shows example outputs from each script:
 - Include drill-down paths for effective troubleshooting
 - Optimize for the target role's specific needs
 
-## Integration Patterns
+## Integration Workflow
 
-### CI/CD Integration
+The scripts do not connect to Prometheus, Grafana, Alertmanager, or PagerDuty, and do not deploy configurations. They write local files for review and integration by your team.
+
 ```bash
-# Generate SLOs during service onboarding
 python3 scripts/slo_designer.py --input service-config.json --output slos.json
-
-# Validate alert configurations in pipeline
-python3 scripts/alert_optimizer.py --input alerts.json --analyze-only --report validation.html
-
-# Auto-generate dashboards for new services
+python3 scripts/alert_optimizer.py --input alerts.json --analyze-only --report analysis.html
 python3 scripts/dashboard_generator.py --input service-config.json --format grafana --output dashboard.json
 ```
 
-### Monitoring Stack Integration
-- **Prometheus**: Generated alert rules and recording rules
-- **Grafana**: Dashboard JSON for direct import
-- **Alertmanager**: Routing and escalation policies
-- **PagerDuty**: Escalation configuration
-
-### GitOps Workflow
-1. Store service definitions in version control
-2. Generate observability configurations in CI/CD
-3. Deploy configurations via GitOps
-4. Monitor effectiveness and iterate
+Review generated targets, queries, alert rules, and dashboard JSON against the actual service instrumentation and monitoring-system version before adoption.
 
 ## Advanced Usage
 
