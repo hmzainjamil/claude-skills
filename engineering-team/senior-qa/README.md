@@ -1,6 +1,6 @@
 # Senior QA Testing Engineer Skill
 
-Production-ready quality assurance and test automation skill for React/Next.js applications.
+Utilities for generating React/Jest test stubs, summarizing Istanbul coverage reports, and scaffolding Playwright tests from Next.js route files. Generated outputs need project-specific implementation and execution.
 
 ## Tech Stack Focus
 
@@ -22,14 +22,14 @@ python scripts/test_suite_generator.py src/components --include-a11y
 python scripts/coverage_analyzer.py coverage/coverage-final.json --threshold 80 --strict
 
 # Scaffold E2E tests for Next.js
-python scripts/e2e_test_scaffolder.py src/app --page-objects
+python scripts/e2e_test_scaffolder.py src/app --include-pom
 ```
 
 ## Scripts
 
 ### test_suite_generator.py
 
-Scans React/TypeScript components and generates Jest + React Testing Library test stubs.
+Uses source-pattern matching to identify selected React components and generate Jest + React Testing Library test stubs. Generated assertions are examples, not verified tests.
 
 **Features:**
 - Detects functional, class, memo, and forwardRef components
@@ -53,7 +53,7 @@ Parses Istanbul JSON or LCOV coverage reports and identifies testing gaps.
 
 **Features:**
 - Calculates line, branch, function, and statement coverage
-- Identifies critical untested paths (auth, payment, API routes)
+- Flags paths matching built-in critical-path name patterns (for example auth, payment, and API); review project-specific results
 - Generates text and HTML reports
 - Threshold enforcement with `--strict` flag
 
@@ -70,13 +70,13 @@ Options:
 
 ### e2e_test_scaffolder.py
 
-Scans Next.js App Router or Pages Router directories and generates Playwright tests.
+Scans Next.js App Router or Pages Router files and generates starter Playwright tests with route-load and placeholder assertions; customize and run them before relying on coverage.
 
 **Features:**
 - Detects routes, dynamic parameters, and layouts
-- Generates test files per route with navigation and content checks
+- Generates test files per detected route with basic URL/title assertions; form and authentication checks can contain TODO placeholders
 - Optional Page Object Model class generation
-- Generates `playwright.config.ts` and auth fixtures
+- Scaffolds `playwright.config.ts` and an auth fixture when absent; fixture code includes setup placeholders
 
 **Usage:**
 ```bash
@@ -147,7 +147,9 @@ Quality assurance best practices:
 4. Prioritize tests for auth, payment, and API routes
 5. Re-run analysis to verify improvement
 
-## Test Pyramid Targets
+## Example Test Distribution
+
+Treat this ratio as a planning example, not a universal target.
 
 | Test Type | Ratio | Focus |
 |-----------|-------|-------|
@@ -155,7 +157,9 @@ Quality assurance best practices:
 | Integration | 20% | Component interactions, API calls, state |
 | E2E | 10% | Critical user journeys, happy paths |
 
-## Coverage Targets
+## Example Coverage Targets
+
+These percentages are configurable suggestions, not compliance standards or evidence that the test suite is effective.
 
 | Project Type | Line | Branch | Function |
 |--------------|------|--------|----------|
@@ -191,6 +195,4 @@ jobs:
 
 ---
 
-**Version:** 2.0.0
-**Last Updated:** January 2026
-**Tech Focus:** React 18+, Next.js 14+, Jest 29+, Playwright 1.40+
+**Compatibility:** Check generated code against the versions and conventions in your project's package manifest.
